@@ -70,24 +70,42 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 			// 是否允许用户通过控制面板切换横幅标题显示
 			switchable: true,
 			// 主页横幅主标题
-			title: "Lovely firefly!",
+			title: "Lanlan",
 			// 主页横幅主标题字体大小
 			titleSize: "3.8rem",
-			// 主页横幅副标题
+			// 每日一言：开启后每天根据日期显示一条不同的格言
+			dailyQuote: true,
+			// 主页横幅副标题（每日一言的语料库）
 			subtitle: [
-				"In Reddened Chrysalis, I Once Rest",
-				"From Shattered Sky, I Free Fall",
-				"Amidst Silenced Stars, I Deep Sleep",
-				"Upon Lighted Fyrefly, I Soon Gaze",
-				"From Undreamt Night, I Thence Shine",
-				"In Finalized Morrow, I Full Bloom",
+				"人生如逆旅，我亦是行人。 —— 苏轼",
+				"Stay hungry, stay foolish. —— Steve Jobs",
+				"代码是写给人看的，顺便能在机器上运行。 —— SICP",
+				"Talk is cheap. Show me the code. —— Linus Torvalds",
+				"学如逆水行舟，不进则退。",
+				"First, solve the problem. Then, write the code. —— John Johnson",
+				"路漫漫其修远兮，吾将上下而求索。 —— 屈原",
+				"Simplicity is prerequisite for reliability. —— Edsger Dijkstra",
+				"业精于勤荒于嬉，行成于思毁于随。 —— 韩愈",
+				"Make it work, make it right, make it fast. —— Kent Beck",
+				"There is no cloud, it's just someone else's computer.",
+				"人生在勤，不索何获。 —— 张衡",
+				"志当存高远。 —— 诸葛亮",
+				"Software is a great combination between artistry and engineering. —— Bill Gates",
+				"Any fool can write code that a computer can understand. Good programmers write code that humans can understand. —— Martin Fowler",
+				"In embedded systems, the hardware is the stage, and the software is the performance.",
+				"只要路是对的，就不怕路远。",
+				"Debugging is like being the detective in a crime movie where you are also the murderer.",
+				"The important thing is not to stop questioning. —— Albert Einstein",
+				"德不孤，必有邻。 —— 论语",
+				"行百里者半九十。 —— 战国策",
+				"The best way to predict the future is to invent it. —— Alan Kay",
+				"山重水复疑无路，柳暗花明又一村。 —— 陆游",
+				"Live as if you were to die tomorrow. Learn as if you were to live forever. —— Gandhi",
 			],
 			// 主页横幅副标题字体大小
 			subtitleSize: "1.5rem",
 			typewriter: {
-				// 是否启用打字机效果
-				// 打字机开启 → 循环显示所有副标题
-				// 打字机关闭 → 每次刷新随机显示一条副标题
+				// 是否启用打字机效果（每日一言模式下，打字机会打出当日格言后停止）
 				enable: true,
 				// 打字速度（毫秒）
 				speed: 100,

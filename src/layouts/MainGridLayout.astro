@@ -117,16 +117,30 @@ const shouldRenderCategoryBar = !!siteConfig.categoryBar;
 // 检查是否在文章详情页
 const isPostPage = !!postSlug;
 
+// 副标题数据
+const subtitle = backgroundWallpaper.common?.homeText?.subtitle;
+const dailyQuoteEnabled = backgroundWallpaper.common?.homeText?.dailyQuote;
+
+// 根据日期获取每日一言
+function getDailyQuote() {
+	if (!Array.isArray(subtitle)) return subtitle;
+	const now = new Date();
+	const start = new Date(now.getFullYear(), 0, 0);
+	const dayOfYear = Math.floor((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+	return subtitle[dayOfYear % subtitle.length];
+}
+
 // 随机选择副标题（当打字机关闭且为数组时）
 const getRandomSubtitle = () => {
-	const subtitle = backgroundWallpaper.common?.homeText?.subtitle;
 	if (Array.isArray(subtitle)) {
 		const randomIndex = Math.floor(Math.random() * subtitle.length);
 		return subtitle[randomIndex];
 	}
 	return subtitle;
 };
-const randomSubtitle = getRandomSubtitle();
+
+const dailySubtitle = dailyQuoteEnabled ? getDailyQuote() : null;
+const randomSubtitle = dailyQuoteEnabled ? dailySubtitle : getRandomSubtitle();
 
 // 主页横幅文本只在首页且全局开关为 true 时显示，不区分设备
 const homeTextEnable = backgroundWallpaper.common?.homeText?.enable;
@@ -667,14 +681,14 @@ const bannerCarouselInterval = Math.max(
                             {backgroundWallpaper.common.homeText.title}
                         </div>
                     )}
-                    {backgroundWallpaper.common?.homeText?.subtitle && (
-                        <div id="banner-subtitle" class="banner-subtitle text-white/90 leading-snug" style={{ fontSize: backgroundWallpaper.common.homeText.subtitleSize || "1.5rem" }} data-subtitles={JSON.stringify(backgroundWallpaper.common.homeText.subtitle)}>
-                            {backgroundWallpaper.common.homeText.typewriter?.enable ? (
+                    {subtitle && (
+                        <div id="banner-subtitle" class="banner-subtitle text-white/90 leading-snug" style={{ fontSize: backgroundWallpaper.common?.homeText?.subtitleSize || "1.5rem" }} data-subtitles={JSON.stringify(subtitle)} data-daily-quote={dailyQuoteEnabled ? "true" : "false"}>
+                            {backgroundWallpaper.common?.homeText?.typewriter?.enable ? (
                                 <TypewriterText
-                                    text={backgroundWallpaper.common.homeText.subtitle}
-                                    speed={backgroundWallpaper.common.homeText.typewriter.speed}
-                                    deleteSpeed={backgroundWallpaper.common.homeText.typewriter.deleteSpeed}
-                                    pauseTime={backgroundWallpaper.common.homeText.typewriter.pauseTime}
+                                    text={dailyQuoteEnabled && dailySubtitle ? dailySubtitle : subtitle}
+                                    speed={backgroundWallpaper.common?.homeText?.typewriter?.speed || 100}
+                                    deleteSpeed={backgroundWallpaper.common?.homeText?.typewriter?.deleteSpeed || 50}
+                                    pauseTime={backgroundWallpaper.common?.homeText?.typewriter?.pauseTime || 2000}
                                 />
                             ) : (
                                 randomSubtitle
@@ -687,6 +701,31 @@ const bannerCarouselInterval = Math.max(
     )}
 
     <script is:inline>
+        // 每日一言：按客户端日期覆盖 typewriter 的 data-text，确保跨天后自动更新
+        (function() {
+            const subtitleElement = document.getElementById('banner-subtitle');
+            if (!subtitleElement) return;
+            if (subtitleElement.dataset.dailyQuote !== "true") return;
+
+            const subtitlesData = subtitleElement.dataset.subtitles;
+            if (!subtitlesData) return;
+
+            try {
+                const subtitles = JSON.parse(subtitlesData);
+                if (!Array.isArray(subtitles) || subtitles.length === 0) return;
+
+                const now = new Date();
+                const start = new Date(now.getFullYear(), 0, 0);
+                const dayOfYear = Math.floor((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+                const todayQuote = subtitles[dayOfYear % subtitles.length];
+
+                const twEl = subtitleElement.querySelector('.typewriter');
+                if (twEl) {
+                    twEl.setAttribute('data-text', todayQuote);
+                }
+            } catch(e) {}
+        })();
+
         function setRandomSubtitle() {
             const subtitleElement = document.getElementById('banner-subtitle');
             if (!subtitleElement) return;

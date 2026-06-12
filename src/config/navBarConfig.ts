@@ -145,9 +145,9 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		icon: "material-symbols:person",
 	},
 	Bangumi: {
-		name: "番组计划",
-		url: "/bangumi/",
-		icon: "material-symbols:movie",
+		name: "学习计划",
+		url: "/study-plan/",
+		icon: "material-symbols:school-outline",
 	},
 	Gallery: {
 		name: "相册",

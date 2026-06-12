@@ -122,14 +122,7 @@ export type SiteConfig = {
 		generateOgImages: boolean;
 	};
 
-	// bangumi配置
-	bangumi?: {
-		userId?: string; // Bangumi用户ID
-		mode?: "static" | "dynamic"; // 数据模式：static=构建时获取，dynamic=客户端实时获取
-		apiUrl?: string; // Bangumi API 地址
-		subjectBaseUrl?: string; // 条目详情页地址
-		categoryOrder?: ("anime" | "game" | "book" | "music" | "real")[]; // 条目类型排序顺序
-	};
+	// 学习计划配置（数据在 src/config/studyPlanConfig.ts 中编辑）
 
 	// 分页配置
 	pagination: {

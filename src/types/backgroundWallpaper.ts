@@ -17,6 +17,7 @@ export type BackgroundWallpaperConfig = {
 			switchable?: boolean; // 是否允许用户通过控制面板切换横幅标题显示
 			title?: string; // 主标题
 			subtitle?: string | string[]; // 副标题，支持单个字符串或字符串数组
+			dailyQuote?: boolean; // 每日一言模式：按日期从数组中选取一条，开启后打字机仅打一条后停止
 			titleSize?: string; // 主标题字体大小，如 "3.5rem"
 			subtitleSize?: string; // 副标题字体大小，如 "1.5rem"
 			typewriter?: {
