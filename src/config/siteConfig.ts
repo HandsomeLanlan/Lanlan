@@ -12,7 +12,7 @@ export const siteConfig: SiteConfig = {
 	subtitle: "lan",
 
 	// 站点 URL
-	site_url: "https://Lanlan-blog.pages.dev",
+	site_url: "https://lanlan.2784193144.workers.dev",
 
 	// 站点描述
 	description:
