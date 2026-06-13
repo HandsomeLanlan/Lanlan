@@ -53,7 +53,7 @@ export async function GET(context: APIContext) {
 	return rss({
 		title: siteConfig.title,
 		description: siteConfig.subtitle || "No description",
-		site: context.site ?? "https://lanlan.2784193144.workers.dev",
+		site: context.site ?? "https://handsomeboylanlan.com",
 		customData: `<templateTheme>Lanlan</templateTheme>
 		<templateThemeVersion>${pkg.version}</templateThemeVersion>
 		<templateThemeUrl>https://github.com/CuteLeaf/Firefly</templateThemeUrl>

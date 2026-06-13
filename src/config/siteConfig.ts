@@ -12,7 +12,7 @@ export const siteConfig: SiteConfig = {
 	subtitle: "lan",
 
 	// 站点 URL
-	site_url: "https://lanlan.2784193144.workers.dev",
+	site_url: "https://handsomeboylanlan.com",
 
 	// 站点描述
 	description:
@@ -72,8 +72,8 @@ export const siteConfig: SiteConfig = {
 		// 4. 网络图片: { type: "url", value: "https://example.com/logo.png", alt: "Logo" }
 		logo: {
 			type: "image",
-			value: "assets/images/firefly.png",
-			alt: "🍀",
+			value: "assets/images/lanlan.jpg",
+			alt: "Lanlan",
 		},
 		// 导航栏标题
 		title: "Lanlan",
